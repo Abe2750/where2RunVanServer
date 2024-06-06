@@ -3,14 +3,17 @@ app = express();
 cors = require('cors');
 require('dotenv').config();
 const { PORT,BASE_URL} = process.env;
-app.use(cors());
+
+const mapData = require('./routes/MapData');
 
 app.use(express.json());
 app.use(cors());
+
+app.use('/', mapData);
 
 app.get('/', (req, res) => {
     res.send('Hello World!');
 });
 app.listen(PORT, () => {
-    console.log(`Example app listening at ${BASE_URL}`);
+    console.log(`Example app listening at ${BASE_URL} ${PORT}`);
 });
