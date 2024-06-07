@@ -5,11 +5,13 @@ require('dotenv').config();
 const { PORT,BASE_URL} = process.env;
 
 const mapData = require('./routes/MapData');
+const signup = require('./routes/SignUp');
 
 app.use(express.json());
 app.use(cors());
 
 app.use('/', mapData);
+app.use('/', signup);
 
 app.get('/', (req, res) => {
     res.send('Hello World!');

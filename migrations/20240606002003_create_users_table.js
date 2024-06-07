@@ -10,7 +10,6 @@ exports.up = function(knex) {
       table.string('password').notNullable();
       table.string('name');
       table.string('username').unique();
-      table.bigInteger('strava_id').unique();
       table.timestamps(true, true);
     });
   };
