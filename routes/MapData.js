@@ -4,6 +4,7 @@ const router = express.Router();
 const knex = require("knex")
 const knexConfig = require("../knexfile")
 const axios = require('axios');
+require('dotenv').config(); 
 
 
 // route "/mapdata"
@@ -42,6 +43,8 @@ async function getApiKey(clientId, clientSecret, refreshToken) {
 const clientId = process.env.STRAVA_CLIENT_ID;
 const clientSecret = process.env.STRAVA_CLIENT_SECRET;
 const refreshToken = process.env.STRAVA_REFRESH_TOKEN;
+const googleAPI = process.env.GOOGLE_API_KEY;
+
 
 
 
@@ -49,13 +52,15 @@ const refreshToken = process.env.STRAVA_REFRESH_TOKEN;
 router.get("/mapdata", async (req, res) => {
     // add location(longtitude and latitude) and apiKey to the response
     try {
+        console.log("jeeeee     googleAPI      ", process.env.GOOGLE_API_KEY )
         const StravApiKey = await getApiKey(clientId, clientSecret, refreshToken);
         res.json({
+           
             location: {
                 lat: 49.2827,
-                lng: -123.1207
+                lng: -123.1207,
             },
-            apiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+            
             stravaApiKey: StravApiKey
         });
 
