@@ -5,10 +5,10 @@ const knexConfig = require("../knexfile");
 
 const db = knex(knexConfig);
 
-router.post('/signup', async (req, res) => {
+router.post('/', async (req, res) => {
     try {
-        const { email, password, name, username, strava_id } = req.body;
-        const user = await db('users').insert({ email, password, name, username, strava_id });
+        const { email, password, name, username, id } = req.body;
+        const user = await db('users').insert({ email, password, name, username, id });
         res.json(user);
     } catch (err) {
         console.log(err);
